@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ArtNotiser.MobileApp.MainPage"
+             xmlns:model="clr-namespace:Artnotiser.MobileApp"
+             xmlns:local="clr-namespace:Artnotiser.MobileApp"
+             Loaded="ContentPage_Loaded">
+    <Shell.TitleView>
+        <Label Text="ArtNotiser" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+    </Shell.TitleView>
+    <Shell.ToolbarItems>
+        <ToolbarItem Text="Uppdatera"
+                     Priority="1"
+                     Order="Primary"
+                     Clicked="ContentPage_Loaded"/>
+        <ToolbarItem Text="Inställningar"
+                     Priority="3"
+                     Order="Secondary"
+                     Clicked="Settings_Clicked" />
+    </Shell.ToolbarItems>
+    <Grid
+        ColumnDefinitions="*"
+        RowDefinitions="Auto,*">
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            x:Name="UpdateLabel"
+            Margin="0,0,0,10"
+            HorizontalTextAlignment="End"
+            />
+        <CollectionView 
+            Grid.Row="1"
+            Grid.Column="0"
+            ItemsSource="{Binding ObservationGroups}" 
+            IsGrouped="true" >
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*,*">
+                        <Label Text="{Binding Title}"
+                                Grid.Column="0"
+                                BackgroundColor="LightGray"
+                                FontSize="18"
+                                FontAttributes="Bold" />
+                        <Label  Text="{Binding Timestamp}"
+                                Grid.Column="1"
+                                HorizontalTextAlignment="End"
+                                VerticalTextAlignment="End"
+                                BackgroundColor="LightGray"
+                                FontSize="10" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"
+                            Text="{Binding Time}" />
+                        <local:HyperlinkLabel Text="{Binding SpeciesName}" Grid.Column="1"
+                              Url="{Binding Url}"
+                              HorizontalOptions="Start" />
+                        <Label Grid.Column="2"  
+                            Text="{Binding Location}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.GroupFooterTemplate>
+                <DataTemplate>
+                    <Label />
+                </DataTemplate>
+            </CollectionView.GroupFooterTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
