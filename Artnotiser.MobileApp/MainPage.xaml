@@ -35,7 +35,7 @@
             IsGrouped="true" >
             <CollectionView.GroupHeaderTemplate>
                 <DataTemplate>
-                    <Grid ColumnDefinitions="*,*">
+                    <Grid ColumnDefinitions="3*,*">
                         <Label Text="{Binding Title}"
                                 Grid.Column="0"
                                 BackgroundColor="LightGray"
