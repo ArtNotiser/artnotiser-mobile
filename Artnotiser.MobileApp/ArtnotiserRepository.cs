@@ -23,7 +23,8 @@ public class ArtnotiserRepository
 
         // 208fdd4d-35a4-4d7d-b2de-17eef6631c23
         HttpClient httpClient = new HttpClient();
-        string queryUrl = $"https://dev.api.artnotiser.se/api/GetNotifications?userId={userId}";
+        //string queryUrl = $"https://dev.api.artnotiser.se/api/GetNotifications?userId={userId}";
+        string queryUrl = $"https://fa-artnotiser-dev.azurewebsites.net/api/GetNotifications?userId={userId}";
         var response = await httpClient.GetAsync(queryUrl);
         var content = await response.Content.ReadAsStringAsync();
 

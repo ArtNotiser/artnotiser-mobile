@@ -15,7 +15,7 @@
 		<ApplicationTitle>ArtNotiser</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.artnotiser.mobileapp</ApplicationId>
+		<ApplicationId>se.artnotiser.mobileapp</ApplicationId>
 		<ApplicationIdGuid>7a0d8889-f5df-436a-9552-c2a429558ffd</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -28,6 +28,7 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<DefaultLanguage>sv</DefaultLanguage>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)'=='net6.0-ios'">
@@ -37,13 +38,19 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appiconfg.svg" BaseSize="128,128" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" BaseSize="128,128" />
+		<MauiIcon Include="Resources\AppIcon\appiconfg_old.svg" BaseSize="128,128" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#ffffff" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\AppIcon\appicon.svg" BaseSize="800,800" />
+		<MauiImage Update="Resources\AppIcon\appiconfg.svg" BaseSize="800,800" />
+		<MauiImage Update="Resources\AppIcon\appicon_old.svg" BaseSize="800,800" />
+		<MauiImage Update="Resources\Images\rotgumpsvala.svg" BaseSize="800,800" />
 		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
 		<!-- Custom Fonts -->
@@ -51,6 +58,16 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\rostgumpsvala.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\AppIcon\appiconfg.svg" />
+	  <None Remove="Resources\AppIcon\whiteappicon.svg" />
+	  <None Remove="Resources\Images\rostgumpsvala.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
